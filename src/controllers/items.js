@@ -14,10 +14,12 @@ const getItems = async (req, res) => {
 
 const createItem = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, category, stockQuantity } = req.body;
 
     const newItemEntry = {
-      name: name,
+      name,
+      category,
+      stockQuantity,
     };
 
     const newItem = await Items.create(newItemEntry);
@@ -45,10 +47,12 @@ const deleteItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { item_id } = req.params;
-    const { name } = req.body;
+    const { name, category, stockQuantity } = req.body;
 
     const editedItemEntry = {
       name: name,
+      category: category,
+      stockQuantity: stockQuantity,
     };
 
     const editedItem = await Items.findByIdAndUpdate(item_id, editedItemEntry, {
